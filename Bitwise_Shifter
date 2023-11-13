@@ -1,0 +1,20 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///Bitwise shifter///
+
+module BS (Data, Shift_amount, Shift_left, Shift_right, Log_Left_Shifted_Data, 
+           Log_Right_Shifted_Data, Arith_Left_Shifted_Data, Arith_Right_Shifted_Data);
+
+input  signed[7:0]Data;
+input  Shift_left, Shift_right;
+input  [2:0]Shift_amount;
+output [7:0]Log_Left_Shifted_Data, Log_Right_Shifted_Data, Arith_Left_Shifted_Data, Arith_Right_Shifted_Data;
+
+assign Log_Left_Shifted_Data    = Shift_left   ? Data <<   Shift_amount : Data;
+assign Log_Right_Shifted_Data   = Shift_right  ? Data >>   Shift_amount : Data;
+assign Arith_Left_Shifted_Data  = Shift_left   ? Data <<<  Shift_amount : Data;
+assign Arith_Right_Shifted_Data = Shift_right  ? Data >>>  Shift_amount : Data;
+
+endmodule
