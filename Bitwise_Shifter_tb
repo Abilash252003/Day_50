@@ -1,0 +1,36 @@
+///100 Days of RTL///
+///Abilash P///
+///Bitwise shifter///
+
+module BS_tb();
+
+reg  signed [7:0]Data;
+reg  Shift_left, Shift_right;
+reg  [2:0]Shift_amount;
+wire [7:0]Log_Left_Shifted_Data, Log_Right_Shifted_Data, Arith_Left_Shifted_Data, Arith_Right_Shifted_Data;
+
+BS DUT (.Data(Data), .Shift_amount(Shift_amount), 
+        .Shift_left(Shift_left), .Shift_right(Shift_right),
+        .Log_Left_Shifted_Data(Log_Left_Shifted_Data), .Log_Right_Shifted_Data(Log_Right_Shifted_Data),
+        .Arith_Left_Shifted_Data(Arith_Left_Shifted_Data), .Arith_Right_Shifted_Data(Arith_Right_Shifted_Data));
+        
+integer i;
+
+initial 
+begin
+  Data = 8'b10111001;
+  Shift_left  = 1'b1;
+  Shift_right = 1'b1;
+  
+  for(i=0; i<8; i=i+1)
+  begin
+     Shift_amount = i;
+     $display ("The Shifted Amount = %d",Shift_amount);
+     #20;
+     $display ("The Logical    Left  Shift Value for input Data %b is %b", Data, Log_Left_Shifted_Data);
+     $display ("The Logical    Right Shift Value for input Data %b is %b", Data, Log_Right_Shifted_Data);
+     $display ("The Arithmetic Left  Shift Value for input Data %b is %b", Data, Arith_Left_Shifted_Data);
+     $display ("The Arithmetic Right Shift Value for input Data %b is %b", Data, Arith_Right_Shifted_Data);
+  end
+end
+endmodule
